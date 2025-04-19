@@ -9,7 +9,7 @@ El problema consiste en seleccionar la cantidad óptima de cada tipo de objeto p
 - Python 3.7+
 - Dependencias listadas en `requirements.txt`
 
-Para instalar las dependencias:
+Para instalar las dependencias ejecuta este comando: en la terminal:
 ``` bash
 pip install -r requirements.txt
 ```
