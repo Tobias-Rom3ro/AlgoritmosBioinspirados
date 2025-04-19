@@ -3,6 +3,7 @@ import statistics
 from excel_reader import find_excel, load_data
 from SimulatedAnnealing import KnapsackSimulatedAnnealing
 from AntColony import KnapsackAntColony
+from AnalisisDesempeno import ejecutar_varias_veces_sa, ejecutar_varias_veces_aco
 
 def main():
     # Buscar archivo Excel
@@ -66,37 +67,6 @@ def main():
         if ejecutar_multiple.lower() == 's':
             veces = int(input("Número de ejecuciones: "))
             ejecutar_varias_veces_aco(aco, veces)
-
-def ejecutar_varias_veces_sa(sa, n=30):
-    """Ejecuta el algoritmo de enfriamiento simulado varias veces y muestra estadísticas."""
-    valores = []
-    tiempos = []
-    iteraciones = []
-
-    for _ in range(n):
-        sa.generate_initial_solution()
-        _, valor, iter_conv, tiempo = sa.run()
-        valores.append(valor)
-        tiempos.append(tiempo)
-        iteraciones.append(iter_conv)
-
-    print("\n--- Estadísticas después de varias ejecuciones SA ---")
-    print(f"Promedio valor óptimo: {statistics.mean(valores):.2f} ± {statistics.stdev(valores):.2f}")
-    print(f"Promedio tiempo (s): {statistics.mean(tiempos):.4f} ± {statistics.stdev(tiempos):.4f}")
-    print(f"Promedio iteraciones de convergencia: {statistics.mean(iteraciones):.2f} ± {statistics.stdev(iteraciones):.2f}")
-
-def ejecutar_varias_veces_aco(aco, n=30):
-    """Ejecuta el algoritmo de colonia de hormigas varias veces y muestra estadísticas."""
-    vals, times, iters = [], [], []
-    for _ in range(n):
-        _, v, itc, t = aco.run()
-        vals.append(v)
-        times.append(t)
-        iters.append(itc)
-    print("\n--- Estadísticas después de varias ejecuciones ACO ---")
-    print(f"Valor promedio: {statistics.mean(vals):.2f} ± {statistics.stdev(vals):.2f}")
-    print(f"Tiempo promedio: {statistics.mean(times):.4f}s ± {statistics.stdev(times):.4f}s")
-    print(f"Iter. convergencia: {statistics.mean(iters):.2f} ± {statistics.stdev(iters):.2f}")
 
 if __name__ == "__main__":
     main()
